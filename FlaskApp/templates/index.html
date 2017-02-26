@@ -2,8 +2,7 @@
 <html lang="en">
  
 <head>
-    <title>Python Flask Bucket List App</title>
- 
+    <title>Food-Fitness-Forecast</title>
  
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
  
@@ -28,16 +27,6 @@
  
     <div class="container">
         <div class="header">
-            <!-- <nav>
-                <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="#">Home</a>
-                    </li>
-                    <li role="presentation"><a href="#">Sign In</a>
-                    </li>
-                    <li role="presentation"><a href="showSignUp">Sign Up</a>
-                    </li>
-                </ul>
-            </nav> -->
             <h3 class="text-muted">Python Flask App</h3>
         </div>
  
@@ -53,47 +42,72 @@
                 </p>
             </form>
         </div>
- 
+        {% if show_details %}
+
         <div class="row marketing">
             <div class="col-lg-6">
-                <h4>Location</h4>
+                <h4><b>Location</b></h4>
+                {% if temp %}
                 <p>{{temp}}</p>
- 
-                <h4>Nutrition Details:</h4>
-                    <h5>Weather Forecast</h5>
-                    <ul style="list-style:none;">
-                        {% if weather_forecast %}
-                        {{ weather_forecast|safe }}
-                        {% endif %}
-                    </ul>
- 
-            </div>
+                {% else %}
+                <p> No data found </p>
+                {% endif %}
+                
+                <h4><b>Nutrition Details</b></h4>
+                {% if detail_item %}
+                 <p> Item Name: {{detail_item[0]}} </p>
+
+                 <p> Cholestrol: {{detail_item[1]}} </p>
+
+                 <p> Carbohydrate: {{detail_item[2]}} </p>
+  
+                 <p> Protein: {{detail_item[3]}} </p>
+    
+                 <p> Fat: {{detail_item[4]}} </p>
+      
+                 <p> Sugar: {{detail_item[5]}} </p>
+                    {% else %}
+                <p> No data found </p>
+                    {% endif %}
+             </div>
+        
  
             <div class="col-lg-6">
-                <h4>Weather</h4>
-                {% if current_condition and current_temperature%}
-                    <p> Current Condition: {{current_condition}}, {{current_temperature}}  </p>
-                {% endif %}
+                <h4><b>Weather</b></h4>
+                {% if temp and current_condition and current_temperature%}
+                    <p> Current Climate: {{current_condition}}, {{current_temperature}}  </p>
+                
                 <div>
                     <h5>Weather Forecast</h5>
-                    <ul style="list-style:none;">
+                    <!-- <ul style="list-style:none;"> -->
+                    <ul>
                     {% if weather_forecast %}
                     {{ weather_forecast|safe }}
                     {% endif %}
                     </ul>
                 </div>
- 
-                <h4>Bucket List</h4>
-                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
- 
-                <h4>Bucket List</h4>
-                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+                {% else %}
+                <p> No data found </p>
+                {% endif %}
+                
+                {% if detail_item and calories and weight %}
+                <h4><b>How long would it take to burn {{ calories }} Kcal ? ({{ weight }} serving )</b></h4>
+                    {% if list_time %}
+                        <p> Walking : {{list_time[0]}} minutes</p>
+                        <p> Running : {{list_time[1]}} minutes</p>
+                        <p> Cycling : {{list_time[2]}} minutes</p>
+                    {% endif %}
+                {% else %}
+                <p> No data found </p>
+                {% endif %}
+               
             </div>
         </div>
- 
-        <footer class="footer">
+        {% endif %}
+
+        <!-- <footer class="footer">
             <p>&copy; Company 2015</p>
-        </footer>
+        </footer> -->
  
     </div>
 </body>

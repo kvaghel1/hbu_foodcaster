@@ -1,0 +1,31 @@
+<div class="box-title ng-binding">
+  How long would it take to burn off 560 KCal?
+</div>
+<div class="box-content">
+  <table class="table m-b-none">
+    <tbody>
+    <tr>
+      <td>Walking (3mph)</td>
+      <td class="ng-binding">152 minutes</td>
+    </tr>
+    <tr>
+      <td>Running (6mph)</td>
+      <td class="ng-binding">54 minutes</td>
+    </tr>
+    <tr>
+      <td>Bicycling (10mph)</td>
+      <td class="ng-binding">78 minutes</td>
+    </tr>
+    </tbody>
+  </table>
+  <div>
+    <!-- ngIf: !vm.user --><small ng-if="!vm.user" class="ng-scope">
+      Values estimated based on person weighting 140 lbs.
+      <a ui-sref="account.login.login" href="/login">Login</a>
+      to personalize.
+    </small><!-- end ngIf: !vm.user -->
+    <!-- ngIf: vm.user && !vm.user.weight_kg -->
+    <!-- ngIf: vm.user && vm.user.weight_kg -->
+  </div>
+</div>
+          

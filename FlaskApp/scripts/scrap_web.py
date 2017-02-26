@@ -1,5 +1,4 @@
 from bs4 import BeautifulSoup
-
 import requests
 
 seasons = ["fall","winter","spring","summer","all-year"]
